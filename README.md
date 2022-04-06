@@ -62,7 +62,7 @@ If you wish to test out the code and run the DB instance, please follow the inst
 - [ ] [Nikita Smal](https://github.com/nikitasmal)
 - [ ] [Phindi Mkhize](https://github.com/Ph1nd1)
 - [ ] [Rzaeen Bahadoor](https://github.com/SparklingCouscous)
-- [ ] [Yuvir Sharma](https://github.com/ms-si-Singh)
+- [ ] [Yuvir Sharma]()
 
 <!-- REFERENCES -->
 ## References
