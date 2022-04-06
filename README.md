@@ -1,7 +1,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <img src="images/Logo.jpeg" alt="Logo" width="250" height="250">
+  <img src="images/Logo.jpg" alt="Logo" width="250" height="250">
 
 <h3 align="center">Event Planner</h3>
 
