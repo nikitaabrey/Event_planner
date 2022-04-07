@@ -58,11 +58,11 @@ If you wish to test out the code and run the DB instance, please follow the inst
 ## Development Team
 
 - [ ] [Bawinile Mqwebedu](https://github.com/BawinileM)
-- [ ] [Natasha Kumalo](https://github.com/Nate-5)
 - [ ] [Marie van der Merwe]()
+- [ ] [Natasha Kumalo](https://github.com/Nate-5)
 - [ ] [Nikita Smal](https://github.com/nikitasmal)
 - [ ] [Phindi Mkhize](https://github.com/Ph1nd1)
-- [ ] [Rzaeen Bahadoor](https://github.com/SparklingCouscous)
+- [ ] [Razeen Bahadoor](https://github.com/SparklingCouscous)
 - [ ] [Yuvir Sharma](https://github.com/yuviiir)
 
 <!-- REFERENCES -->
