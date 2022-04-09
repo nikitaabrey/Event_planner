@@ -54,10 +54,13 @@ If you wish to test out the code and run the DB instance, please follow the inst
 
 1. Add steps...
 
-### Run Project
+### Run the Project
 
 * Press Ctrl+F5.
-In a browser, navigate to https://localhost:<port>/swagger, where <port> is the randomly chosen port number displayed in the output.
+
+In a browser, navigate to 
+_https://localhost:<port>/swagger_
+where _port_ is the randomly chosen port number displayed in the output.
 
 <!-- MEET THE TEAM -->
 ## Development Team
