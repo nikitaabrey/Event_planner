@@ -20,7 +20,7 @@ GO
 CREATE TABLE Event(
 	EventID INT IDENTITY (1,1) NOT NULL PRIMARY KEY,
        UserID  INT NOT NULL FOREIGN KEY REFERENCES Users(UserID),
-       RecurringID INT NOT NULL FOREIGN KEY REFERENCES RecurringEvents(recurringID),
+       RecurringID INT NOT NULL FOREIGN KEY REFERENCES RecurringEvents(RecurringID),
        EventName VARCHAR (31) NOT NULL,
 	EventDesc VARCHAR (31) NOT NULL,
 	StartDate DATETIME NOT NULL,
