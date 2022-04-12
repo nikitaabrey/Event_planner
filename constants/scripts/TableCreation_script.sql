@@ -134,13 +134,13 @@ GO
 
 CREATE TABLE [Event](
 	EventID INT IDENTITY (1,1) NOT NULL PRIMARY KEY,
-    UserID  INT NOT NULL FOREIGN KEY REFERENCES Users(UserID),
-    RecurringID CHAR(1) NOT NULL FOREIGN KEY REFERENCES RecurringEvents(RecurringID),
+        UserID  INT NOT NULL FOREIGN KEY REFERENCES Users(UserID),
+        RecurringID CHAR(1) NOT NULL FOREIGN KEY REFERENCES RecurringEvents(RecurringID),
 	FullDate DATE NOT NULL FOREIGN KEY REFERENCES Calendar(FullDate),
-    EventName VARCHAR (31) NOT NULL,
+        EventName VARCHAR (31) NOT NULL,
 	StartTime TIMESTAMP NULL,
 	EndTime TIME NULL,
-	EventDesc VARCHAR (31) NOT NULL,
+	EventDesc VARCHAR (500) NOT NULL,
 	isFullDay BIT NOT NULL,
 	isRecurring BIT NOT NULL,
 	
