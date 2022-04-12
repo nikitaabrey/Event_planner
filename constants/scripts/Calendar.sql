@@ -57,7 +57,7 @@ src AS
 addons as (
 	
 	SELECT
-	CalendarDate,
+	FullDate,
 	[Day],
 	DaySuffix			= CONVERT(char(2), CASE WHEN [Day] / 10 = 1 THEN 'th' ELSE 
                             CASE RIGHT([Day], 1) WHEN '1' THEN 'st' WHEN '2' THEN 'nd' 
