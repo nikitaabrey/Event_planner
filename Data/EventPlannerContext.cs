@@ -8,7 +8,7 @@ namespace Event_planner.Data
         private ISingletonSecretsManagerService secretsManagerService;
         private IConfiguration configuration;
 
-        public EventPlannerContext( ISingletonSecretsManagerService secretsManagerService, IConfiguration configuration)        {
+        public EventPlannerContext(ISingletonSecretsManagerService secretsManagerService, IConfiguration configuration)        {
             this.secretsManagerService = secretsManagerService;
             this.configuration = configuration;
         }
@@ -19,15 +19,9 @@ namespace Event_planner.Data
                 return;
             }
             else {
-
-                DbSecretModel secretModel = this.secretsManagerService.getDatabaseCredentialAsync("prodKey")
-                    .GetAwaiter()
-                    .GetResult();
+                string connectionString = getConnString();
                 optionsBuilder.UseSqlServer(
-                    $"Server='{secretModel.Host}';" +
-                    $" Database=EventPlanner;" +
-                    $" User Id='{secretModel.Username}'; " +
-                    $"Password='{secretModel.Password}';"
+                   connectionString
                 );
                 base.OnConfiguring(optionsBuilder);
             }
@@ -35,18 +29,22 @@ namespace Event_planner.Data
 
 
         private string getConnString() {
-
-            // check if environment has string configured
-            // get from secrets manager
-
             if (configuration.GetSection("ConnectionString").Exists())
             {
-
+                Console.WriteLine("Hello WOrld");
+                return configuration.GetSection("ConnectionString").Value.ToString();
             }
-            else { 
-                
+            else if (configuration.GetSection("DatabaseSecretID").Exists()) {
+                var secretID = configuration.GetSection("DatabaseSecretID").Value.ToString();
+                DbSecretModel secretModel = this.secretsManagerService.getDatabaseCredential(secretID);
+                return $"Server='{secretModel.Host}';" +
+                    $" Database=EventPlanner;" +
+                    $" User Id='{secretModel.Username}'; " +
+                    $"Password='{secretModel.Password}';";
+            } else {
+                // error
+                throw new Exception();
             }
-            return "";
         
         }
 

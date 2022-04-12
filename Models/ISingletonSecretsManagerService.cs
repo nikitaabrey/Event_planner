@@ -2,6 +2,6 @@
 {
     public interface ISingletonSecretsManagerService
     {
-         Task<DbSecretModel> getDatabaseCredentialAsync(string secretID);
+         DbSecretModel getDatabaseCredential(string secretID);
     }
 }

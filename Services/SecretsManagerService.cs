@@ -11,33 +11,8 @@ namespace Event_planner.Services
 
     public class SecretsManagerService : ISingletonSecretsManagerService
     {
-
-
-
-
         private readonly IAmazonSecretsManager secretsManager;
         private readonly SecretsManagerCache cache;
-/*      
-        public class SecretCacheHook : ISecretCacheHook
-        {
-            private readonly IEncryptionProvider _encryptionProvider;
-
-            public SecretCacheHook(IEncryptionProvider encryptionProvider)
-            {
-                _encryptionProvider = encryptionProvider;
-            }
-
-            public object Get(object obj)
-            {
-                return _encryptionProvider.Decrypt(obj);
-            }
-
-            public object Put(object obj)
-            {
-                return _encryptionProvider.Encrypt(obj);
-            }
-        }
-*/
         public SecretsManagerService()
         {
 
@@ -46,18 +21,24 @@ namespace Event_planner.Services
 
         }
 
-        public async Task<DbSecretModel> getDatabaseCredentialAsync(string secretID)
+        public DbSecretModel getDatabaseCredential(string secretID)
         {
-            
-            var response =  this.cache.GetSecretString(secretID).Result;
-            JObject jObject = JObject.Parse(response);
-            return new DbSecretModel
+            try
             {
-                Host = jObject["host"].ToObject<string>(),
-                Port = jObject["port"].ToObject<string>(),
-                Password = jObject["password"].ToObject<string>(),
-                Username = jObject["username"].ToObject<string>()
-            };
+                var response = this.cache.GetSecretString(secretID).Result;
+                JObject jObject = JObject.Parse(response);
+                return new DbSecretModel
+                {
+                    Host = jObject["host"].ToObject<string>(),
+                    Port = jObject["port"].ToObject<string>(),
+                    Password = jObject["password"].ToObject<string>(),
+                    Username = jObject["username"].ToObject<string>()
+                };
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
 
         }
 

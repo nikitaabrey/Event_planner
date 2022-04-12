@@ -3,6 +3,7 @@
 
 using Amazon.Extensions.NETCore.Setup;
 using Amazon.SecretsManager;
+using Event_planner.Data;
 using Event_planner.Models;
 using Event_planner.Services;
 using Microsoft.Extensions.DependencyInjection;
@@ -46,4 +47,5 @@ app.Run();
 
 void ConfigureServices(IServiceCollection services) {
     services.AddSingleton<ISingletonSecretsManagerService, SecretsManagerService>();
+    services.AddDbContext<EventPlannerContext>();
 }
