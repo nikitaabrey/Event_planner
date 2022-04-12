@@ -1,4 +1,6 @@
-﻿namespace Event_planner.Models
+﻿using Event_planner.Models;
+
+namespace Event_planner.Repositories
 {
     public interface ISingletonSecretsManagerService
     {

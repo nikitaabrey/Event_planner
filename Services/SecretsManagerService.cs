@@ -3,8 +3,9 @@ using Amazon.SecretsManager;
 using Amazon.SecretsManager.Extensions.Caching;
 using Amazon.SecretsManager.Model;
 using Newtonsoft.Json.Linq;
-using Event_planner.Models;
 using Amazon.Runtime.CredentialManagement;
+using Event_planner.Repositories;
+using Event_planner.Models;
 
 namespace Event_planner.Services
 {
