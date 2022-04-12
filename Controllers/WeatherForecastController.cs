@@ -1,3 +1,5 @@
+using Amazon.Runtime.CredentialManagement;
+using Event_planner.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Event_planner.Controllers;
@@ -12,21 +14,20 @@ public class WeatherForecastController : ControllerBase
     };
 
     private readonly ILogger<WeatherForecastController> _logger;
+    private ISingletonSecretsManagerService smService;
 
-    public WeatherForecastController(ILogger<WeatherForecastController> logger)
+    public WeatherForecastController(ILogger<WeatherForecastController> logger, ISingletonSecretsManagerService secretsManagerService )
     {
         _logger = logger;
+        this.smService = secretsManagerService;
     }
 
     [HttpGet(Name = "GetWeatherForecast")]
-    public IEnumerable<WeatherForecast> Get()
+    public IActionResult Get()
     {
-        return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-        {
-            Date = DateTime.Now.AddDays(index),
-            TemperatureC = Random.Shared.Next(-20, 55),
-            Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-        })
-        .ToArray();
+
+
+        var dbSecret = smService.getDatabaseCredentialAsync("prodKey");
+        return  new ObjectResult(dbSecret);
     }
 }
