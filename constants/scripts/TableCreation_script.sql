@@ -1,23 +1,13 @@
---USE Master;
-
---CREATE DATABASE EventPlannerDB;
---GO
-
-USE EventPlannerDB;
+DROP TABLE IF EXISTS dbo.Users
+DROP TABLE IF EXISTS dbo.Calendar
+DROP TABLE IF EXISTS #temp
+DROP TABLE IF EXISTS dbo.RecurringEvents
+DROP TABLE IF EXISTS dbo.[Event]
 GO
 
---DROP DATABASE IF EXISTS EventPlannerDB;
---DROP TABLE IF EXISTS dbo.Users
---DROP TABLE IF EXISTS dbo.Calendar
---DROP TABLE IF EXISTS #temp
---DROP TABLE IF EXISTS dbo.RecurringEvents
---DROP TABLE IF EXISTS dbo.[Event]
---GO
 
---*****************************************************************************************************
-
-CREATE TABLE Users(
-	UserID INT IDENTITY (1,1) NOT NULL PRIMARY KEY,
+CREATE TABLE dbo.Users(
+	UserId INT IDENTITY (1,1) NOT NULL PRIMARY KEY,
 	FirstName VARCHAR (31) NOT NULL,
 	LastName VARCHAR (31) NOT NULL,
 	Email VARCHAR(200) NOT NULL
@@ -26,16 +16,40 @@ GO
 
 CREATE TABLE dbo.Calendar (
 	[FullDate] DATE PRIMARY KEY,
-	[Year] INT,
-	[Month]  INT,
-	[Day] INT,
+	[Year] INT NOT NULL,
+	[Month]  INT NOT NULL,
+	[Day] INT NOT NULL,
 	[DayOfWeek] INT NULL,
 	[WeekOfMonth] INT NULL,
+	[FirstOfWeek] DATE NULL,
+	[LastOfWeek] DATE NULL,
 	CHECK ([Month] >= 1 AND [Month] <= 12),
 	CHECK ([Day] >= 1 AND [Day] <= 31),
 	CHECK ([DayOfWeek] >= 1 AND [DayOfWeek] <= 7),
 	CHECK ([WeekOfMonth] >= 1 AND [WeekOfMonth] <= 6)
 );
+
+
+CREATE TABLE dbo.RecurringEvents (
+	RecurringId CHAR(1) NOT NULL PRIMARY KEY,
+	RecurringDesc VARCHAR(30) NOT NULL
+);
+
+
+
+CREATE TABLE dbo.[Event] (
+	EventId INT IDENTITY (1,1) NOT NULL PRIMARY KEY,
+    UserId  INT NOT NULL FOREIGN KEY REFERENCES Users(UserID),
+    RecurringId CHAR(1) NOT NULL FOREIGN KEY REFERENCES RecurringEvents(RecurringId),
+	StartDate DATE NOT NULL FOREIGN KEY REFERENCES Calendar(FullDate),
+	EndDate DATE NOT NULL FOREIGN KEY REFERENCES Calendar(FullDate),
+    EventName VARCHAR (31) NOT NULL,
+	StartTime TIME NULL,
+	EndTime TIME NULL,
+	EventDesc VARCHAR (500) NOT NULL,
+	IsFullDay BIT NOT NULL
+);
+
 
 
 SET DATEFIRST  1, -- 1 = Monday, 7 = Sunday
@@ -115,7 +129,9 @@ dim as (
 	[DayOfWeek],
 	WeekOfMonth,
 	[Month],
-	[Year]
+	[Year],
+	 [FirstOfWeek],
+	 [LastOfWeek]
 	from addons
 )
 SELECT * INTO #temp FROM dim
@@ -123,28 +139,6 @@ SELECT * INTO #temp FROM dim
  GO
 
 INSERT INTO dbo.Calendar
-SELECT [FullDate],[Year], [Month],[Day],[DayOfWeek],[WeekOfMonth]
+SELECT [FullDate],[Year], [Month],[Day],[DayOfWeek],[WeekOfMonth], [FirstOfWeek],[LastOfWeek]
 FROM #temp ORDER BY [FullDate];
-
-CREATE TABLE RecurringEvents(
-	RecurringID CHAR(1) NOT NULL PRIMARY KEY,
-	RecurringDesc VARCHAR(31) NOT NULL
-);
-GO
-
-CREATE TABLE [Event](
-	EventID INT IDENTITY (1,1) NOT NULL PRIMARY KEY,
-        UserID  INT NOT NULL FOREIGN KEY REFERENCES Users(UserID),
-        RecurringID CHAR(1) NOT NULL FOREIGN KEY REFERENCES RecurringEvents(RecurringID),
-	StartDate DATE NOT NULL FOREIGN KEY REFERENCES Calendar(FullDate),
-	EndDate DATE NOT NULL FOREIGN KEY REFERENCES Calendar(FullDate),
-        EventName VARCHAR (31) NOT NULL,
-	StartTime TIME NULL,
-	EndTime TIME NULL,
-	EventDesc VARCHAR (500) NOT NULL,
-	isFullDay BIT NOT NULL,
-);
-GO
-
---*****************************************************************************************************
 
