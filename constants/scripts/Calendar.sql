@@ -1,52 +1,22 @@
 DROP TABLE IF EXISTS #temp
 DROP TABLE IF EXISTS dbo.Calendar
-DROP TABLE IF EXISTS dbo.DayOfWeek
-DROP TABLE IF EXISTS dbo.DayOfMonth
-DROP TABLE IF EXISTS dbo.CalendarMonth
-DROP TABLE IF EXISTS dbo.CalendarYear
+
 
 GO
 
-CREATE TABLE  dbo.DayOfWeek (
-	[DayOfWeek] INT PRIMARY KEY,
-	[Name] VARCHAR(15) UNIQUE,
-	isWeekend BIT,
-	CHECK ([DayOfWeek] >=1 AND [DayOfWeek] <= 7)
-);
 
-CREATE TABLE  dbo.DayOfMonth (
-	[DayOfMonth] INT PRIMARY KEY,
-	Suffix  VARCHAR(2),
-	CHECK ([DayOfMonth] >= 1 AND [DayOfMonth] <= 31)
-);
-
-
-CREATE TABLE dbo.CalendarMonth (
-	[Month] INT PRIMARY KEY,
-	[Name] VARCHAR(20) UNIQUE,
-	CHECK ([Month] >= 1 AND [Month] <= 12)
-);
-
-CREATE TABLE dbo.CalendarYear (
-	[Year] INT PRIMARY KEY,
-	isLeapYear BIT
-);
 
 CREATE TABLE dbo.Calendar (
-	[Year] INT FOREIGN KEY REFERENCES dbo.CalendarYear ([year]),
-	[Month]  INT FOREIGN KEY REFERENCES dbo.CalendarMonth ([month]),
-	[DayOfMonth] INT FOREIGN KEY REFERENCES dbo.DayOfMonth ([DayOfMonth]),
-	[DayOfWeek] INT FOREIGN KEY REFERENCES dbo.DayOfWeek ([DayOfWeek]),
-	[DayOfYear] INT NULL,
-	[DayOfWeekInMonth] INT NULL,
+	[FullDate] DATE PRIMARY KEY,
+	[Year] INT,
+	[Month]  INT,
+	[Day] INT,
+	[DayOfWeek] INT NULL,
 	[WeekOfMonth] INT NULL,
-	[WeekOfYear] INT NULL,
-	PRIMARY KEY ([DayOfMonth],[Month],[Year]),
-	CHECK ([DayOfYear] >= 1 AND [DayOfYear] <= 366),
-	CHECK ([WeekOfMonth] >= 1 AND [WeekOfMonth] <= 6),
-	CHECK ([WeekOfYear] >= 1 AND [WeekOfYear] <= 54),
-	CHECK ([DayOfWeekInMonth] >= 1 AND [DayOfWeekInMonth] <= 5)
-
+	CHECK ([Month] >= 1 AND [Month] <= 12),
+	CHECK ([Day] >= 1 AND [Day] <= 31),
+	CHECK ([DayOfWeek] >= 1 AND [DayOfWeek] <= 7),
+	CHECK ([WeekOfMonth] >= 1 AND [WeekOfMonth] <= 6)
 );
 
 
@@ -71,7 +41,7 @@ d(d) AS
 src AS
 (
   SELECT
-    CalendarDate   		= CONVERT(date, d),
+    FullDate   		= CONVERT(date, d),
     [Day]          		= DATEPART(DAY,       d),
     [DayName]      		= DATENAME(WEEKDAY,   d),
 	[DayOfWeek]    		= DATEPART(WEEKDAY,   d),
@@ -95,13 +65,13 @@ addons as (
 	[DayName],
 	[DayOfWeek],
 	DayOfWeekInMonth 	= CONVERT(tinyint, ROW_NUMBER() OVER 
-                            (PARTITION BY FirstOfMonth, [DayOfWeek] ORDER BY [CalendarDate])),
+                            (PARTITION BY FirstOfMonth, [DayOfWeek] ORDER BY [FullDate])),
 	[DayOfYear],
 	IsWeekend           = CASE WHEN [DayOfWeek] IN (CASE @@DATEFIRST WHEN 1 THEN 6 WHEN 7 THEN 1 END,7) 
                             THEN 1 ELSE 0 END,
 	WeekOfYear,
-    FirstOfWeek      	= DATEADD(DAY, 1 - [DayOfWeek], CalendarDate),
-    LastOfWeek       	= DATEADD(DAY, 6, DATEADD(DAY, 1 - [DayOfWeek], CalendarDate)),
+    FirstOfWeek      	= DATEADD(DAY, 1 - [DayOfWeek], FullDate),
+    LastOfWeek       	= DATEADD(DAY, 6, DATEADD(DAY, 1 - [DayOfWeek], FullDate)),
 	WeekOfMonth      	= CONVERT(tinyint, DENSE_RANK() OVER 
                             (PARTITION BY [Year], [Month] ORDER BY WeekOfYear)),
 
@@ -109,7 +79,7 @@ addons as (
 	FirstOfMonth,
 	[MonthName],
 
-    LastOfMonth      	= MAX([CalendarDate]) OVER (PARTITION BY [Year], [Month]),
+    LastOfMonth      	= MAX([FullDate]) OVER (PARTITION BY [Year], [Month]),
 	FirstOfNextMonth 	= DATEADD(MONTH, 1, FirstOfMonth),
     LastOfNextMonth  	= DATEADD(DAY, -1, DATEADD(MONTH, 2, FirstOfMonth)),
 	[Year],
@@ -122,30 +92,12 @@ addons as (
 ),
 dim as (
 	SELECT 
-	CalendarDate,
+	FullDate,
 	[Day],
-	DaySuffix,
-	[DayName],
 	[DayOfWeek],
-	DayOfWeekInMonth,
-	[DayOfYear],
-	IsWeekend,
-	WeekOfYear,
-    FirstOfWeek,
-    LastOfWeek,
 	WeekOfMonth,
 	[Month],
-	[MonthName],
-	FirstOfMonth,
-    LastOfMonth,
-	DaysInMonth       = DATEDIFF(DAY, FirstOfMonth, LastOfMonth) + 1,
-	FirstOfNextMonth,
-    LastOfNextMonth,
-	[Year],
-	FirstOfYear,
-    LastOfYear,
-    IsLeapYear
-
+	[Year]
 	from addons
 )
 SELECT * INTO #temp FROM dim
@@ -153,25 +105,7 @@ SELECT * INTO #temp FROM dim
  
 GO
 
-INSERT INTO dbo.DayOfWeek
-SELECT DISTINCT [DayOfWeek], [DayName], [isWeekend] 
-FROM #temp ORDER BY [DayOfWeek]
-
-INSERT INTO dbo.DayOfMonth 
-SELECT DISTINCT [Day],[DaySuffix] 
-FROM #temp ORDER BY [Day]
-
-
-INSERT INTO dbo.CalendarMonth
-SELECT DISTINCT [Month], [MonthName] 
-FROM #temp ORDER BY [Month]
-
-
-INSERT INTO dbo.CalendarYear
-SELECT DISTINCT [Year], IsLeapYear 
-FROM #temp ORDER BY [Year]
-
 
 INSERT INTO dbo.Calendar
-SELECT [Year], [Month],[Day],[DayOfWeek],[DayOfYear],[DayOfWeekInMonth],[WeekOfMonth],[WeekOfYear] 
-FROM #temp ORDER BY [CalendarDate]
+SELECT FullDate,[Year], [Month],[Day],[DayOfWeek],[WeekOfMonth]
+FROM #temp ORDER BY [FullDate]
