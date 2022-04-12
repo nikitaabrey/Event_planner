@@ -20,7 +20,7 @@ CREATE TABLE Users(
 	UserID INT IDENTITY (1,1) NOT NULL PRIMARY KEY,
 	FirstName VARCHAR (31) NOT NULL,
 	LastName VARCHAR (31) NOT NULL,
-	Email VARCHAR(31) NOT NULL
+	Email VARCHAR(200) NOT NULL
 );
 GO
 
@@ -136,15 +136,15 @@ CREATE TABLE [Event](
 	EventID INT IDENTITY (1,1) NOT NULL PRIMARY KEY,
         UserID  INT NOT NULL FOREIGN KEY REFERENCES Users(UserID),
         RecurringID CHAR(1) NOT NULL FOREIGN KEY REFERENCES RecurringEvents(RecurringID),
-	FullDate DATE NOT NULL FOREIGN KEY REFERENCES Calendar(FullDate),
+	StartDate DATE NOT NULL FOREIGN KEY REFERENCES Calendar(FullDate),
+	EndDate DATE NOT NULL FOREIGN KEY REFERENCES Calendar(FullDate),
         EventName VARCHAR (31) NOT NULL,
-	StartTime TIMESTAMP NULL,
+	StartTime TIME NULL,
 	EndTime TIME NULL,
 	EventDesc VARCHAR (500) NOT NULL,
 	isFullDay BIT NOT NULL,
-	isRecurring BIT NOT NULL,
-	
 );
 GO
 
 --*****************************************************************************************************
+
