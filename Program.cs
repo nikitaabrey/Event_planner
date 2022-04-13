@@ -1,19 +1,19 @@
 
 
 
-using Amazon.Extensions.NETCore.Setup;
-using Amazon.SecretsManager;
+
 using Event_planner.Data;
 using Event_planner.Repositories;
 using Event_planner.Services;
-using Microsoft.Extensions.DependencyInjection;
+using AutoMapper;
+using FluentValidation.AspNetCore;
+using EventPlanner.Domain.Validation;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
-
 
 
 
@@ -48,4 +48,8 @@ app.Run();
 void ConfigureServices(IServiceCollection services) {
     services.AddSingleton<ISingletonSecretsManagerService, SecretsManagerService>();
     services.AddDbContext<EventPlannerContext>();
+    services.AddAutoMapper(typeof(Program).Assembly);
+    services.AddMvc();
+    services.AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<EventDTOValidator>());
+
 }
