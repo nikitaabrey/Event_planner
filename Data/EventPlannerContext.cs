@@ -1,5 +1,7 @@
 ﻿using Event_planner.Models;
 using Event_planner.Repositories;
+using EventPlanner.FluentConfigs;
+using EventPlanner.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Event_planner.Data
@@ -8,6 +10,13 @@ namespace Event_planner.Data
     {
         private ISingletonSecretsManagerService secretsManagerService;
         private IConfiguration configuration;
+
+        public virtual DbSet<Calendar> Calendars { get; set; }
+        public virtual DbSet<Event> Events { get; set; }
+        public virtual DbSet<RecurringEvents> RecurringEvents { get; set; }
+        public virtual DbSet<Users> Users { get; set; }
+
+
 
         public EventPlannerContext(ISingletonSecretsManagerService secretsManagerService, IConfiguration configuration)        {
             this.secretsManagerService = secretsManagerService;
@@ -26,6 +35,16 @@ namespace Event_planner.Data
                 );
                 base.OnConfiguring(optionsBuilder);
             }
+        }
+
+
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfiguration(new CalendarMap());
+            modelBuilder.ApplyConfiguration(new EventMap());
+            modelBuilder.ApplyConfiguration(new RecurringEventsMap());
+            modelBuilder.ApplyConfiguration(new UsersMap());
         }
 
 
