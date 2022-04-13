@@ -23,10 +23,12 @@ CREATE TABLE dbo.Calendar (
 	[WeekOfMonth] INT NULL,
 	[FirstOfWeek] DATE NULL,
 	[LastOfWeek] DATE NULL,
+	[DayOfYear] INT NULL,
 	CHECK ([Month] >= 1 AND [Month] <= 12),
 	CHECK ([Day] >= 1 AND [Day] <= 31),
 	CHECK ([DayOfWeek] >= 1 AND [DayOfWeek] <= 7),
-	CHECK ([WeekOfMonth] >= 1 AND [WeekOfMonth] <= 6)
+	CHECK ([WeekOfMonth] >= 1 AND [WeekOfMonth] <= 6),
+	CHECK ([DayOfYear] >= 1 AND [DayOfYear] <= 366)
 );
 
 
@@ -131,7 +133,8 @@ dim as (
 	[Month],
 	[Year],
 	 [FirstOfWeek],
-	 [LastOfWeek]
+	 [LastOfWeek],
+	 [DayOfYear] 
 	from addons
 )
 SELECT * INTO #temp FROM dim
@@ -139,6 +142,6 @@ SELECT * INTO #temp FROM dim
  GO
 
 INSERT INTO dbo.Calendar
-SELECT [FullDate],[Year], [Month],[Day],[DayOfWeek],[WeekOfMonth], [FirstOfWeek],[LastOfWeek]
+SELECT [FullDate],[Year], [Month],[Day],[DayOfWeek],[WeekOfMonth], [FirstOfWeek],[LastOfWeek],[DayOfYear]
 FROM #temp ORDER BY [FullDate];
 
