@@ -1,4 +1,5 @@
 ﻿using Event_planner.Models;
+using Event_planner.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace Event_planner.Data

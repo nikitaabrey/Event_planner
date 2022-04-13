@@ -4,7 +4,7 @@
 using Amazon.Extensions.NETCore.Setup;
 using Amazon.SecretsManager;
 using Event_planner.Data;
-using Event_planner.Models;
+using Event_planner.Repositories;
 using Event_planner.Services;
 using Microsoft.Extensions.DependencyInjection;
 

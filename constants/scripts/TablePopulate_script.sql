@@ -33,7 +33,7 @@ VALUES
     ('Constance','Bartlett','purus.maecenas@outlook.edu'),
     ('Mannix','Booker','purus@google.net'),
     ('Slade','Roberson','magnis@google.ca'),
-    ('Dante','Cooper','convallis.est.vitae@yahoo.edu');
+    ('Dante','Cooper','convallis.est.vitae@yahoo.edu'),
     ('Rowan','Sweet','elit.elit@google.org'),
     ('Amir','Mathews','in.mi@google.com'),
     ('Raymond','Yang','turpis@protonmail.ca'),
@@ -131,7 +131,7 @@ VALUES
     ('Glenna','Gilliam','feugiat@hotmail.com');
 GO
 
-INSERT INTO RecurringEvents (RecurringID, RecurringDesc)
+INSERT INTO RecurringEvents (RecurringId, RecurringDesc)
 VALUES
     ('D','Daily'),
     ('W','Weekly'),
