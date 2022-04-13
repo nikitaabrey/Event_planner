@@ -58,7 +58,7 @@ namespace Event_planner.Data
                 var secretID = configuration.GetSection("DatabaseSecretID").Value.ToString();
                 DbSecretModel secretModel = this.secretsManagerService.getDatabaseCredential(secretID);
                 return $"Server='{secretModel.Host}';" +
-                    $" Database=EventPlanner;" +
+                    $" Database=EventPlannerDB;" +
                     $" User Id='{secretModel.Username}'; " +
                     $"Password='{secretModel.Password}';";
             } else {

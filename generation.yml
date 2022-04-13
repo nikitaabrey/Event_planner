@@ -4,7 +4,7 @@ project:
   nullable: false
 database:
   provider: SqlServer
-  connectionName: ConnectionStrings:EventPlanner
+  connectionName: ConnectionStrings:EventPlannerDB
   userSecretsId: 984ef0cf-2b22-4fd1-876d-e01499da4c1f
   tableNaming: Singular
 data:
