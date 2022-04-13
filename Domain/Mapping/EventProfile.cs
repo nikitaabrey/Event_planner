@@ -8,19 +8,6 @@ namespace EventPlanner.Domain.Mapping
     public partial class EventProfile
         : AutoMapper.Profile
     {
-
-        public class DateFormatter : AutoMapper.IValueConverter<DateTime, DateOnly>
-        {
-            
-
-            public DateOnly Convert(DateTime sourceMember, ResolutionContext context)
-            {
-                return DateOnly.FromDateTime(sourceMember);
-            }
-        }
-
-
-
         public EventProfile()
         {
             CreateMap<Event, EventDTO>()

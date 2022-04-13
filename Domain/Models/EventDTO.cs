@@ -6,7 +6,6 @@ namespace EventPlanner.Domain.Models
 {
     public partial class EventDTO
     {
-        #region Generated Properties
         public int EventId { get; set; }
 
         public string RecurringId { get; set; }
@@ -25,7 +24,6 @@ namespace EventPlanner.Domain.Models
 
         public bool IsFullDay { get; set; }
 
-        #endregion
 
     }
 }
