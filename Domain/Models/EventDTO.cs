@@ -10,15 +10,16 @@ namespace EventPlanner.Domain.Models
 
         public string RecurringId { get; set; }
 
-        public DateTime StartDate { get; set; }
+        public int UserId { get; set; }
+        public string StartDate { get; set; }
 
-        public DateTime EndDate { get; set; }
+        public string EndDate { get; set; }
 
         public string EventName { get; set; }
 
-        public TimeSpan? StartTime { get; set; }
+        public string StartTime { get; set; }
 
-        public TimeSpan? EndTime { get; set; }
+        public string EndTime { get; set; }
 
         public string EventDesc { get; set; }
 

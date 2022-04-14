@@ -1,5 +1,5 @@
 ﻿using Event_planner.Models;
-using Event_planner.Repositories;
+using Event_planner.Services;
 using EventPlanner.FluentConfigs;
 using EventPlanner.Models;
 using Microsoft.EntityFrameworkCore;
