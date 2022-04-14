@@ -47,9 +47,13 @@ app.Run();
 
 void ConfigureServices(IServiceCollection services) {
     services.AddSingleton<ISingletonSecretsManagerService, SecretsManagerService>();
+    services.AddScoped<IEventService, EventService>();
+    services.AddScoped<IEventRepository, EventRepository>();
     services.AddDbContext<EventPlannerContext>();
     services.AddAutoMapper(typeof(Program).Assembly);
     services.AddMvc();
-    services.AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<EventDTOValidator>());
+    services.AddControllers().AddNewtonsoftJson();
+
+     services.AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<EventDTOValidator>());
 
 }
