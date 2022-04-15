@@ -1,7 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using EventPlanner.Models;
-using Event_planner.Data;
-using AutoMapper;
+using Event_planner.Services;
 
 namespace Event_planner.Controllers
 {
@@ -9,28 +7,17 @@ namespace Event_planner.Controllers
     [ApiController]
     public class EventPlannerController : ControllerBase
     {
-        private readonly EventPlannerContext EventPlannerContext;
-        private readonly IMapper mapper;
-        public EventPlannerController(EventPlannerContext context, IMapper mapper)
+        private readonly IEventPlannerService EventPlannerService;
+        public EventPlannerController(IEventPlannerService EventPlannerService)
         {
-            this.EventPlannerContext = context;
-            this.mapper = mapper;
+            this.EventPlannerService = EventPlannerService;
         }
 
         // DELETE: api/EventPlanner/1
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteEvent(long id)
+        public async Task<IActionResult> DeleteEvent(int id)
         {
-            var Event = this.EventPlannerContext
-           .Set<Event>()
-           .FirstOrDefault(p => p.EventId == id);
-            if (Event == null)
-            {
-                return NotFound();
-            }
-            this.EventPlannerContext.Remove(Event);
-
-            this.EventPlannerContext.SaveChanges();
+            this.EventPlannerService.DeleteEvent(id);
 
             string removalConfirmation = $"Removed Event {id}";
             return new ObjectResult(removalConfirmation);

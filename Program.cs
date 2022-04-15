@@ -45,11 +45,13 @@ app.Run();
 
 
 
-void ConfigureServices(IServiceCollection services) {
+void ConfigureServices(IServiceCollection services)
+{
     services.AddSingleton<ISingletonSecretsManagerService, SecretsManagerService>();
+    services.AddScoped<IEventPlannerRepository, EventPlannerRepository>();
+    services.AddScoped<IEventPlannerService, EventPlannerService>();
     services.AddDbContext<EventPlannerContext>();
     services.AddAutoMapper(typeof(Program).Assembly);
     services.AddMvc();
     services.AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<EventDTOValidator>());
-
 }
