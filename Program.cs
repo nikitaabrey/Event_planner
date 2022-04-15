@@ -53,5 +53,6 @@ void ConfigureServices(IServiceCollection services)
     services.AddDbContext<EventPlannerContext>();
     services.AddAutoMapper(typeof(Program).Assembly);
     services.AddMvc();
+    services.AddControllers().AddNewtonsoftJson();
     services.AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<EventDTOValidator>());
 }

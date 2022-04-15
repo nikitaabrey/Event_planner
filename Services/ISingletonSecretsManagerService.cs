@@ -1,6 +1,6 @@
 ﻿using Event_planner.Models;
 
-namespace Event_planner.Repositories
+namespace Event_planner.Services
 {
     public interface ISingletonSecretsManagerService
     {
