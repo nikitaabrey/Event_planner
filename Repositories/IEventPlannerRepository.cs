@@ -7,5 +7,7 @@ namespace Event_planner.Repositories
     {
         void DeleteEvent(Event _event);
         Event findEvent(int id);
+
+        void UpdateEvent(Event _event);
     }
 }
