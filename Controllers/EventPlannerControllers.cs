@@ -35,18 +35,12 @@ namespace Event_planner.Controllers
          [HttpPut("UpdateEvent")]
          public  async Task<ActionResult> UpdateEvent(int UserId, int EventId, string EventName, string EventDesc, string RecurringId, DateTime StartDate, DateTime EndDate, TimeSpan StartTime, TimeSpan EndTime, bool IsFullDay)
          {
-             if (EventId == null)
+             do
              {
-              return BadRequest();
-             }
-            else 
-            { 
-                  //StartTime =  DateTime.Now.TimeOfDay;
-                  //EndTime = DateTime.Now.TimeOfDay;
+                  this.EventPlannerService.UpdateEvent(UserId, EventId, EventName, EventDesc, RecurringId, StartDate, EndDate, StartTime, EndTime, IsFullDay);
+                  return NoContent();
 
-                 this.EventPlannerService.UpdateEvent(UserId, EventId, EventName, EventDesc, RecurringId, StartDate, EndDate, StartTime, EndTime, IsFullDay);
-                 return NoContent();
-            }
+             }    while(_event is Event && ((Event)_event).EventId == EventId);
          }     
 
     }
