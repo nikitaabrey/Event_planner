@@ -1,7 +1,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <img src="images/Logo.jpg" alt="Logo" width="250" height="250">
+  <img src="constants/images/Logo.jpg" alt="Logo" width="250" height="250">
 
 <h3 align="center">Event Planner</h3>
 
@@ -53,6 +53,14 @@ If you wish to test out the code and run the DB instance, please follow the inst
 ### Running the scripts
 
 1. Add steps...
+
+### Run the Project
+
+* Press Ctrl+F5.
+
+In a browser, navigate to 
+_https://localhost:port/swagger_
+where _port_ is the randomly chosen port number displayed in the output.
 
 <!-- MEET THE TEAM -->
 ## Development Team
