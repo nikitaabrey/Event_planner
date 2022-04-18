@@ -1,4 +1,5 @@
 using EventPlanner.Models;
+using EventPlanner.Domain.Models;
 
 namespace Event_planner.Services
 {
@@ -6,7 +7,6 @@ namespace Event_planner.Services
     {
         void DeleteEvent(int id);
 
-        void UpdateEvent(int UserId, int EventId, string EventName, string EventDesc, string RecurringId, DateTime StartDate, DateTime EndDate, TimeSpan StartTime, TimeSpan EndTime, bool IsFullDay);
-
+        void UpdateEvent(EventDTO eventDTO);
     }
 }

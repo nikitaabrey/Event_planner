@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Event_planner.Services;
 using EventPlanner.Models;
+using EventPlanner.Domain.Models;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Threading.Tasks;
@@ -31,16 +32,19 @@ namespace Event_planner.Controllers
 
         }
 
-        //PUT: api/EventPlanner
          [HttpPut("UpdateEvent")]
-         public  async Task<ActionResult> UpdateEvent(int UserId, int EventId, string EventName, string EventDesc, string RecurringId, DateTime StartDate, DateTime EndDate, TimeSpan StartTime, TimeSpan EndTime, bool IsFullDay)
+         public  async Task<ActionResult> UpdateEvent([FromBody] EventDTO eventDTO)
          {
-             do
-             {
-                  this.EventPlannerService.UpdateEvent(UserId, EventId, EventName, EventDesc, RecurringId, StartDate, EndDate, StartTime, EndTime, IsFullDay);
-                  return NoContent();
-
-             }    while(_event is Event && ((Event)_event).EventId == EventId);
+            try { 
+                this.EventPlannerService.UpdateEvent(eventDTO);
+                string UpdateStatus = $"Updated Event";
+                return new ObjectResult(UpdateStatus);
+            }
+            catch(ArgumentException ex)
+            {
+               
+                return BadRequest();
+            }
          }     
 
     }

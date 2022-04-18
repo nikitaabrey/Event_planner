@@ -19,15 +19,11 @@ namespace Event_planner.Repositories
         }
 
         
-        public void UpdateEvent(Event _event)
+        public async Task UpdateEvent(Event _event)
         {
-            /*this.context.Entry(_event).State = Microsoft.EntityFrameworkCore.EntityState.Modified; //update entity in db
-            await this.context.SaveChangesAsync();
-            return Task.CompletedTask;*/
-            
             this.context.Update(_event);
-            this.context.SaveChanges();
-           
+            await this.context.SaveChangesAsync();
+          
         }
 
         public Event findEvent(int id)
