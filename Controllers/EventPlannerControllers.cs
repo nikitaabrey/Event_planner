@@ -29,7 +29,7 @@ namespace Event_planner.Controllers
         public async Task<IActionResult> CreateEvent([FromBody] EventDTO EventDTO)
         {
             this.EventPlannerService.CreateEvent(EventDTO);
-            string removalConfirmation = $"Created Event";
+            string removalConfirmation = "Created Event";
             return new ObjectResult(removalConfirmation);
 
         }

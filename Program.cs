@@ -50,6 +50,9 @@ void ConfigureServices(IServiceCollection services)
     services.AddSingleton<ISingletonSecretsManagerService, SecretsManagerService>();
     services.AddScoped<IEventPlannerRepository, EventPlannerRepository>();
     services.AddScoped<IEventPlannerService, EventPlannerService>();
+    services.AddScoped<ICalendarService, CalendarService>();
+    services.AddScoped<ICalendarRepository, CalendarRepository>();
+
     services.AddDbContext<EventPlannerContext>();
     services.AddAutoMapper(typeof(Program).Assembly);
     services.AddMvc();
