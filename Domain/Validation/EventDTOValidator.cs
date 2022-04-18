@@ -35,7 +35,7 @@ namespace EventPlanner.Domain.Validation
         protected bool isValidDate(string _date) {
             DateTime date;
             return DateTime.TryParseExact(_date, "yyyy-mm-dd", System.Globalization.CultureInfo.InvariantCulture,
-        System.Globalization.DateTimeStyles.None, out date);
+            System.Globalization.DateTimeStyles.None, out date);
         }
 
     }
