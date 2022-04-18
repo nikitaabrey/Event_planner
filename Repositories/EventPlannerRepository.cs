@@ -17,6 +17,11 @@ namespace Event_planner.Repositories
             this.context.Remove(_event);
             this.context.SaveChanges();
         }
+        public void CreateEvent(Event _event)
+        {
+            this.context.Add(_event);
+            this.context.SaveChanges();
+        }
 
         public Event findEvent(int id)
         {

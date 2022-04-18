@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Event_planner.Services;
+using EventPlanner.Domain.Models;
 
 namespace Event_planner.Controllers
 {
@@ -21,6 +22,14 @@ namespace Event_planner.Controllers
 
             string removalConfirmation = $"Removed Event {id}";
             return new ObjectResult(removalConfirmation);
+
+        }
+
+        [HttpPost("CreateEvent")]
+        public async Task<IActionResult> CreateEvent([FromBody] EventDTO EventDTO)
+        {
+            this.EventPlannerService.CreateEvent(EventDTO);
+            return new ObjectResult("Created Event");
 
         }
 
