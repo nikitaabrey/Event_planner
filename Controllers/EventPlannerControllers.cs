@@ -48,5 +48,14 @@ namespace Event_planner.Controllers
             }
         }     
 
+        [HttpPost("CreateEvent")]
+        public async Task<IActionResult> CreateEvent([FromBody] EventDTO EventDTO)
+        {
+            this.EventPlannerService.CreateEvent(EventDTO);
+            return new ObjectResult("Created Event");
+
+        }
+
+
     }
 }
