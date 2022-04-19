@@ -10,5 +10,7 @@ namespace Event_planner.Repositories
         void CreateEvent(Event _event);
 
         Event findEvent(int id);
+
+        Task UpdateEvent(Event _event);
     }
 }

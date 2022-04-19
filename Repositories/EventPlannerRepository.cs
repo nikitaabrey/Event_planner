@@ -23,6 +23,14 @@ namespace Event_planner.Repositories
             this.context.SaveChanges();
         }
 
+        
+        public async Task UpdateEvent(Event _event)
+        {
+            this.context.Update(_event);
+            await this.context.SaveChangesAsync();
+          
+        }
+
         public Event findEvent(int id)
         {
             return this.context.Find<Event>(id);
