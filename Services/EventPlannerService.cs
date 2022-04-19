@@ -29,46 +29,46 @@ namespace Event_planner.Services
 
         }
 
-          public DateTime getDate(string Date) 
-          {
-            return DateTime.ParseExact(Date, "yyyy-mm-dd", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None);
-          }
+         public DateTime getDate(string Date) 
+         {
+            return DateTime.Parse(Date);
+         }
         
         public TimeSpan getTime(string Time) 
         {
-            return TimeSpan.ParseExact(Time, "hh\\:mm\\:ss", System.Globalization.CultureInfo.InvariantCulture);
+            return TimeSpan.Parse(Time);
         }
 
-         public void UpdateEvent(EventDTO eventDTO)
-            {
+        public void UpdateEvent(EventDTO eventDTO)
+        {
              
-                       var ev = this.EventPlannerRepo.findEvent(eventDTO.EventId);
+             var ev = this.EventPlannerRepo.findEvent(eventDTO.EventId);
                           
                     
-                     if(ev == null)
-                     {
-                         throw new Exception("Event does not exist!");
-                     }
-                    else
-                    {   
-                        ev.UserId = eventDTO.UserId;
-                        ev.EventId = eventDTO.EventId;
-                        ev.EventName = eventDTO.EventName;
-                        ev.EventDesc = eventDTO.EventDesc;
-                        ev.RecurringId = eventDTO.RecurringId;
-                        ev.EventName =  eventDTO.EventName;
-                        ev.EventDesc =  eventDTO.EventDesc;
-                        ev.RecurringId =  eventDTO.RecurringId;
-                        ev.StartDate =  getDate(eventDTO.StartDate);
-                        ev.EndDate =   getDate(eventDTO.EndDate);
-                        ev.StartTime =  getTime (eventDTO.StartTime);
-                        ev.EndTime =   getTime(eventDTO.EndTime);
-                        ev.IsFullDay =  eventDTO.IsFullDay;
+             if(ev == null)
+             {
+                 throw new Exception("Event does not exist!");
+             }
+             else
+             {   
+                 ev.UserId = eventDTO.UserId;
+                 ev.EventId = eventDTO.EventId;
+                 ev.EventName = eventDTO.EventName;
+                 ev.EventDesc = eventDTO.EventDesc;
+                 ev.RecurringId = eventDTO.RecurringId;
+                 ev.EventName =  eventDTO.EventName;
+                 ev.EventDesc =  eventDTO.EventDesc;
+                 ev.RecurringId =  eventDTO.RecurringId;
+                 ev.StartDate =  getDate(eventDTO.StartDate);
+                 ev.EndDate =   getDate(eventDTO.EndDate);
+                 ev.StartTime =  getTime (eventDTO.StartTime);
+                 ev.EndTime =   getTime(eventDTO.EndTime);
+                 ev.IsFullDay =  eventDTO.IsFullDay;
                        
-                        this.EventPlannerRepo.UpdateEvent(ev);
-                    }       
+                 this.EventPlannerRepo.UpdateEvent(ev);
+             }       
                      
-            }          
+        }          
 
     }
 }

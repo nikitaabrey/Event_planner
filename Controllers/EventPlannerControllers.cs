@@ -32,10 +32,11 @@ namespace Event_planner.Controllers
 
         }
 
-         [HttpPut("UpdateEvent")]
-         public  async Task<ActionResult> UpdateEvent([FromBody] EventDTO eventDTO)
-         {
-            try { 
+        [HttpPut("UpdateEvent")]
+        public  async Task<ActionResult> UpdateEvent([FromBody] EventDTO eventDTO)
+        {
+            try 
+            { 
                 this.EventPlannerService.UpdateEvent(eventDTO);
                 string UpdateStatus = $"Updated Event";
                 return new ObjectResult(UpdateStatus);
@@ -45,7 +46,7 @@ namespace Event_planner.Controllers
                
                 return BadRequest();
             }
-         }     
+        }     
 
     }
 }
