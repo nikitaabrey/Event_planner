@@ -42,10 +42,10 @@ namespace Event_planner.Services
             return TimeSpan.Parse(Time);
         }
 
-        public void UpdateEvent(EventDTO eventDTO)
+        public void UpdateEvent(UpdateDTO updateDTO)
         {
              
-             var ev = this.EventPlannerRepo.findEvent(eventDTO.EventId);
+             var ev = this.EventPlannerRepo.findEvent(updateDTO.EventId);
                           
                     
              if(ev == null)
@@ -54,19 +54,16 @@ namespace Event_planner.Services
              }
              else
              {   
-                 ev.UserId = eventDTO.UserId;
-                 ev.EventId = eventDTO.EventId;
-                 ev.EventName = eventDTO.EventName;
-                 ev.EventDesc = eventDTO.EventDesc;
-                 ev.RecurringId = eventDTO.RecurringId;
-                 ev.EventName =  eventDTO.EventName;
-                 ev.EventDesc =  eventDTO.EventDesc;
-                 ev.RecurringId =  eventDTO.RecurringId;
-                 ev.StartDate =  getDate(eventDTO.StartDate);
-                 ev.EndDate =   getDate(eventDTO.EndDate);
-                 ev.StartTime =  getTime (eventDTO.StartTime);
-                 ev.EndTime =   getTime(eventDTO.EndTime);
-                 ev.IsFullDay =  eventDTO.IsFullDay;
+                 //ev.UserId = updateDTO.UserId;
+                 //ev.EventId = updateDTO.EventId;
+                 ev.EventName = updateDTO.EventName != null ? updateDTO.EventName : ev.EventName;
+                 ev.EventDesc = updateDTO.EventDesc != null ? updateDTO.EventDesc : ev.EventDesc;
+                 ev.RecurringId = updateDTO.RecurringId != null ? updateDTO.RecurringId : ev.RecurringId;
+                 ev.StartDate =  updateDTO.StartDate != null ? getDate(updateDTO.StartDate) : ev.StartDate;
+                 ev.EndDate =   updateDTO.EndDate != null ? getDate(updateDTO.EndDate) : ev.EndDate;
+                 ev.StartTime =  updateDTO.StartTime != null ? getTime (updateDTO.StartTime) : ev.StartTime;
+                 ev.EndTime =   updateDTO.EndTime != null ? getTime(updateDTO.EndTime) : ev.EndTime;
+                 ev.IsFullDay =  updateDTO.IsFullDay != null ? updateDTO.IsFullDay : ev.IsFullDay;
                        
                  this.EventPlannerRepo.UpdateEvent(ev);
              }       
@@ -80,5 +77,6 @@ namespace Event_planner.Services
             this.EventPlannerRepo.CreateEvent(Event);
 
         }
+
     }
 }
