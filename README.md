@@ -93,15 +93,28 @@ TablePopulate_Script.sql
 
 ### Running the API's
 
-####Running the scripts in Visual Code:
+#### Running the scripts in Visual Code:
 1. Open the project in Visual Code and run the Program.cs file.
-2. 
 
-* Press Ctrl+F5.
-
-In a browser, navigate to 
+2. In a browser, navigate to 
 _https://localhost:port/swagger_
 where _port_ is the randomly chosen port number displayed in the output.
+
+3. Once the web API has been launched in your favourite web browser the API endpoints can be interacted with either through Postman or the Swagger interface.
+
+#### Running the scripts from the command line in Windows:
+1. Open the a command line window in the directory where the project is stored and run the following command:
+```
+dotnet run
+```
+
+2. In a browser, navigate to 
+_https://localhost:port/swagger_
+where _port_ is the randomly chosen port number displayed in the output.
+
+3. Once the web API has been launched in your favourite web browser the API endpoints can be interacted with either through Postman or the Swagger interface.
+
+
 
 <!-- MEET THE TEAM -->
 ## Development Team
@@ -120,3 +133,4 @@ where _port_ is the randomly chosen port number displayed in the output.
 * [The Hive](https://the-hive.bbd.co.za/)
 * [Pluralsight](https://app.pluralsight.com/)
 * [C# documentation](https://docs.microsoft.com/en-us/dotnet/csharp/)
+* [AWS documentation](https://docs.aws.amazon.com/)
