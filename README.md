@@ -43,7 +43,7 @@ Add if we include a DB.
  
  <!-- Auth UPLOAD -->
  ###Authentication Diagram
-  <img src="constants/images/Auth.jpg" alt="Auth_diagram" width="600" height="400">
+  <img src="constants/images/Auth.jpg" alt="Auth_diagram" width="1000" height="400">
 
 <!-- GETTING STARTED -->
 ## Getting Started
