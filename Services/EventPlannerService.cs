@@ -26,10 +26,17 @@ namespace Event_planner.Services
 
         }
 
-        public Event FindEventById(int id)
+        public EventDTO FindEventById(int id)
         {
             var EventInstance = this.EventPlannerRepo.findEvent(id);
-            return EventInstance;
+            return mapper.Map<EventDTO>(EventInstance);
+        }
+
+        public IEnumerable<EventDTO> FindEventsByUserId(int id, string date)
+        {
+            IEnumerable<Event> Events = this.EventPlannerRepo.get(filter: s => s.UserId == id && s.StartDate == getDate(date));
+
+            return  mapper.Map<IEnumerable<EventDTO>>(Events);
         }
 
         public DateTime getDate(string Date) 
