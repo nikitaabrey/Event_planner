@@ -1,8 +1,8 @@
+DROP TABLE IF EXISTS dbo.[Event]
+DROP TABLE IF EXISTS dbo.RecurringEvents
 DROP TABLE IF EXISTS dbo.Users
 DROP TABLE IF EXISTS dbo.Calendar
 DROP TABLE IF EXISTS #temp
-DROP TABLE IF EXISTS dbo.RecurringEvents
-DROP TABLE IF EXISTS dbo.[Event]
 GO
 
 
