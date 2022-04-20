@@ -7,11 +7,13 @@ namespace Event_planner.Services
     {
         void DeleteEvent(int id);
 
-        Event FindEventById(int id);
+        EventDTO FindEventById(int id);
 
         void UpdateEvent(EventDTO eventDTO);
         
         void CreateEvent(EventDTO Event);
+
+        IEnumerable<EventDTO> FindEventsByUserId(int id, string date);
     }
 
 }

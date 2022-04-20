@@ -1,5 +1,6 @@
 
 using EventPlanner.Models;
+using System.Linq.Expressions;
 
 namespace Event_planner.Repositories
 {
@@ -12,5 +13,7 @@ namespace Event_planner.Repositories
         Event findEvent(int id);
 
         Task UpdateEvent(Event _event);
+
+       IEnumerable<Event> get(Expression<Func<Event, bool>> filter);
     }
 }
