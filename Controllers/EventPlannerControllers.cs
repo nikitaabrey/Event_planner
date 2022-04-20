@@ -5,11 +5,14 @@ using EventPlanner.Domain.Models;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Event_planner.Controllers
 {
-    [Route("api/[controller]")]
+    [Authorize(AuthenticationSchemes = "Bearer")]
     [ApiController]
+    [Route("api/[controller]")]
+    
     public class EventPlannerController : ControllerBase
     {
         private Event _event;
@@ -31,7 +34,6 @@ namespace Event_planner.Controllers
             return new ObjectResult(removalConfirmation);
 
         }
-
 
         [HttpGet("GetEvent/{id}")]
         public async Task<IActionResult> GetEvent(int id)
