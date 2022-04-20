@@ -3,13 +3,20 @@ using Event_planner.Repositories;
 using EventPlanner.Models;
 using EventPlanner.Domain.Models;
 
+using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Threading.Tasks;
+using EventPlanner.Domain.Validation;
+using EventPlanner.Domain.Mapping;
+
 namespace Event_planner.Services
 {
     public class EventPlannerService : IEventPlannerService
     {
         private IEventPlannerRepository EventPlannerRepo;
-        private readonly ICalendarService calenderService;
+
         private readonly IMapper mapper;
+        private readonly ICalendarService calenderService;
 
         public EventPlannerService(IEventPlannerRepository EventPlannerRepo, IMapper mapper, ICalendarService calenderService)
         {
@@ -17,6 +24,9 @@ namespace Event_planner.Services
             this.mapper = mapper;
             this.calenderService = calenderService;
         }
+        
+        
+        
         public void DeleteEvent(int id)
         {
             var Event = this.EventPlannerRepo
@@ -28,6 +38,7 @@ namespace Event_planner.Services
             this.EventPlannerRepo.DeleteEvent(Event);
 
         }
+
 
         public EventDTO FindEventById(int id)
         {

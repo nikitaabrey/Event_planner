@@ -10,6 +10,7 @@ namespace EventPlanner.Models
             Events = new HashSet<Event>();
         }
 
+        public string UserName { get; set; }
         public int UserId { get; set; }
 
         public string FirstName { get; set; }

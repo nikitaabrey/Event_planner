@@ -16,5 +16,4 @@ namespace Event_planner.Services
         IEnumerable<EventDTO> GetWeekEvents(int userId, String date);
         IEnumerable<EventDTO> FindEventsByUserId(int id, string date);
     }
-
 }

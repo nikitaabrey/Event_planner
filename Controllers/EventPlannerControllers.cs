@@ -2,6 +2,9 @@ using Microsoft.AspNetCore.Mvc;
 using Event_planner.Services;
 using EventPlanner.Models;
 using EventPlanner.Domain.Models;
+using Microsoft.AspNetCore.Http;
+using System;
+using System.Threading.Tasks;
 
 namespace Event_planner.Controllers
 {
@@ -28,6 +31,7 @@ namespace Event_planner.Controllers
             return new ObjectResult(removalConfirmation);
 
         }
+
 
         [HttpGet("GetEvent/{id}")]
         public async Task<IActionResult> GetEvent(int id)
