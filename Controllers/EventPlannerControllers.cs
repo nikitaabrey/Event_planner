@@ -1,14 +1,17 @@
 using Microsoft.AspNetCore.Mvc;
 using Event_planner.Services;
 using EventPlanner.Models;
-using Newtonsoft.Json;
+using EventPlanner.Domain.Models;
 
 namespace Event_planner.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class EventPlannerController : ControllerBase
-    {
+    {  
+        private Event _event;
+        public Event Event => _event;
+
         private readonly IEventPlannerService EventPlannerService;
         public EventPlannerController(IEventPlannerService EventPlannerService)
         {
@@ -37,6 +40,31 @@ namespace Event_planner.Controllers
             return new ObjectResult(EventObject);
 
         }
+
+        [HttpPut("UpdateEvent")]
+        public  async Task<ActionResult> UpdateEvent([FromBody] EventDTO eventDTO)
+        {
+            try 
+            { 
+                this.EventPlannerService.UpdateEvent(eventDTO);
+                string UpdateStatus = $"Updated Event";
+                return new ObjectResult(UpdateStatus);
+            }
+            catch(ArgumentException ex)
+            {
+               
+                return BadRequest();
+            }
+        }     
+
+        [HttpPost("CreateEvent")]
+        public async Task<IActionResult> CreateEvent([FromBody] EventDTO EventDTO)
+        {
+            this.EventPlannerService.CreateEvent(EventDTO);
+            return new ObjectResult("Created Event");
+
+        }
+
 
     }
 }
