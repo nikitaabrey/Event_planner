@@ -13,29 +13,13 @@ namespace Event_planner.Controllers
     {
         private readonly IJwtAuth jwtAuth;
 
-        private readonly List<Member> lstMember = new List<Member>()
-        {
-            new Member{Id=1, Name="John" },
-            new Member {Id=2, Name="Jack" },
-            new Member{Id=3, Name="Sally"}
-        };
         public MembersController(IJwtAuth jwtAuth)
         {
             this.jwtAuth = jwtAuth;
         }
-        // GET: api/<MembersController>
-        [HttpGet]
-        public IEnumerable<Member> AllMembers()
-        {
-            return lstMember;
-        }
 
-        // GET api/<MembersController>/5
-        [HttpGet("{id}")]
-        public Member MemberByid(int id)
-        {
-            return lstMember.Find(x => x.Id == id);
-        }
+
+
 
         [AllowAnonymous]
         // POST api/<MembersController>

@@ -11,8 +11,7 @@ namespace Event_planner.Services
     public class Auth : IJwtAuth
 
     {
-        private readonly int userid = 250;
-        private readonly string password = "Password";
+
         private readonly string key;
         public Auth(string key)
         {
