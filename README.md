@@ -41,7 +41,7 @@ App Features:
 <!-- ERD UPLOAD -->
 ### Entity Relational Diagram
 Add if we include a DB.
- <img src="constants/images/DB_ERD.jpg" alt="ERD" width="250" height="250">
+ <img src="constants/images/MicrosoftTeams-image.png" alt="ERD" width="1000" height="500">
 
  <!-- API ENDPOINTS-->
  ### API Endpoints
