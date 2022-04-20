@@ -12,5 +12,7 @@ namespace Event_planner.Repositories
         Event findEvent(int id);
 
         Task UpdateEvent(Event _event);
+
+        IEnumerable<Event> findUserEvents(int UserId);
     }
 }

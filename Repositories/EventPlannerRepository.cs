@@ -35,5 +35,10 @@ namespace Event_planner.Repositories
         {
             return this.context.Find<Event>(id);
         }
+        
+        public IEnumerable<Event> findUserEvents(int UserId)
+        {
+            return this.context.Events.Where(e => e.UserId == UserId);
+        }
     }
 }
