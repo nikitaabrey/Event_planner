@@ -23,6 +23,7 @@ App Features:
 * Update events already in the caledar
 * Delete events that have been created
 * Secure login
+* Be able to view your day, week or month in advance
 ```
 
 ### Built With
