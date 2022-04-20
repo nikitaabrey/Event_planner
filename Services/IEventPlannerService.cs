@@ -10,9 +10,10 @@ namespace Event_planner.Services
         EventDTO FindEventById(int id);
 
         void UpdateEvent(EventDTO eventDTO);
-        
+
         void CreateEvent(EventDTO Event);
 
+        IEnumerable<EventDTO> GetWeekEvents(int userId, String date);
         IEnumerable<EventDTO> FindEventsByUserId(int id, string date);
     }
 

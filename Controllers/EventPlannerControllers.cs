@@ -8,7 +8,7 @@ namespace Event_planner.Controllers
     [Route("api/[controller]")]
     [ApiController]
     public class EventPlannerController : ControllerBase
-    {  
+    {
         private Event _event;
         public Event Event => _event;
 
@@ -41,6 +41,14 @@ namespace Event_planner.Controllers
 
         }
 
+        [HttpGet("GetUserWeekEvents")]
+        public IActionResult GetWeekEvents(int userId, String date)
+        {
+            IEnumerable<EventDTO> WeekEvents = this.EventPlannerService.GetWeekEvents(userId, date);
+
+            return new ObjectResult(WeekEvents);
+        }
+        
         [HttpGet("GetEventsByDay/{id}/{date}")]
         public async Task<IActionResult> GetEventsByDay(int id, string date)
         {
@@ -54,20 +62,20 @@ namespace Event_planner.Controllers
         }
 
         [HttpPut("UpdateEvent")]
-        public  async Task<ActionResult> UpdateEvent([FromBody] EventDTO eventDTO)
+        public async Task<ActionResult> UpdateEvent([FromBody] EventDTO eventDTO)
         {
-            try 
-            { 
+            try
+            {
                 this.EventPlannerService.UpdateEvent(eventDTO);
                 string UpdateStatus = $"Updated Event";
                 return new ObjectResult(UpdateStatus);
             }
-            catch(ArgumentException ex)
+            catch (ArgumentException ex)
             {
-               
+
                 return BadRequest();
             }
-        }     
+        }
 
         [HttpPost("CreateEvent")]
         public async Task<IActionResult> CreateEvent([FromBody] EventDTO EventDTO)
