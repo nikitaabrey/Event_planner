@@ -45,13 +45,13 @@ Add if we include a DB.
 
  <!-- API ENDPOINTS-->
  ### API Endpoints
- -*/api/Caledar/day
- -*/api/Caledar/month
- -*/api/Caledar/week
- -*/api/EventPlanner/{id}
- -*/api/EventPlanner/UpdateEvent
- -*/api/EventPlanner/CeateEvent
- -*/api/Members/authentication
+ */api/Caledar/day
+ */api/Caledar/month
+ */api/Caledar/week
+ */api/EventPlanner/{id}
+ */api/EventPlanner/UpdateEvent
+ */api/EventPlanner/CeateEvent
+ */api/Members/authentication
  
  
  <!-- AUTH DESCRIPTION -->
