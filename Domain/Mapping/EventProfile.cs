@@ -11,7 +11,9 @@ namespace EventPlanner.Domain.Mapping
         public EventProfile()
         {
             CreateMap<Event, EventDTO>()
-                .ForSourceMember(source => source.UserId, opt => opt.DoNotValidate());
+                .ForSourceMember(source => source.UserId, opt => opt.DoNotValidate())
+                .ForMember(source => source.StartDate, opt => opt.MapFrom(s => s != null ? s.StartDate.Date.ToShortDateString() : ""))
+                .ForMember(source => source.EndDate, opt => opt.MapFrom(s => s != null ? s.EndDate.Date.ToShortDateString() : ""));
 
             CreateMap<EventDTO, Event>();
 

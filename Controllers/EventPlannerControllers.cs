@@ -19,7 +19,7 @@ namespace Event_planner.Controllers
         }
 
         // DELETE: api/EventPlanner/1
-        [HttpDelete("{id}")]
+        [HttpDelete("DeleteEvent/{id}")]
         public async Task<IActionResult> DeleteEvent(int id)
         {
             this.EventPlannerService.DeleteEvent(id);
@@ -29,10 +29,10 @@ namespace Event_planner.Controllers
 
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("GetEvent/{id}")]
         public async Task<IActionResult> GetEvent(int id)
         {
-            Event EventObject = this.EventPlannerService.FindEventById(id);
+            EventDTO EventObject = this.EventPlannerService.FindEventById(id);
             if (EventObject == null)
             {
                 return NotFound();
@@ -47,6 +47,17 @@ namespace Event_planner.Controllers
             IEnumerable<EventDTO> WeekEvents = this.EventPlannerService.GetWeekEvents(userId, date);
 
             return new ObjectResult(WeekEvents);
+        }
+        
+        [HttpGet("GetEventsByDay/{id}/{date}")]
+        public async Task<IActionResult> GetEventsByDay(int id, string date)
+        {
+            IEnumerable<EventDTO> EventsObject = this.EventPlannerService.FindEventsByUserId(id, date);
+            if (EventsObject == null)
+            {
+                return NotFound();
+            }
+            return new ObjectResult(EventsObject);
 
         }
 
@@ -69,8 +80,16 @@ namespace Event_planner.Controllers
         [HttpPost("CreateEvent")]
         public async Task<IActionResult> CreateEvent([FromBody] EventDTO EventDTO)
         {
-            this.EventPlannerService.CreateEvent(EventDTO);
-            return new ObjectResult("Created Event");
+            try 
+            { 
+                this.EventPlannerService.CreateEvent(EventDTO);
+                return new ObjectResult("Created Event");
+            }
+            catch(ArgumentException ex)
+            {
+               
+                return BadRequest();
+            }
 
         }
 

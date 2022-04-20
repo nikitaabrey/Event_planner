@@ -1,5 +1,7 @@
 using EventPlanner.Models;
 using Event_planner.Data;
+using System.Linq.Expressions;
+
 
 namespace Event_planner.Repositories
 {
@@ -39,6 +41,12 @@ namespace Event_planner.Repositories
         public IEnumerable<Event> findUserEvents(int UserId)
         {
             return this.context.Events.Where(e => e.UserId == UserId);
+        }
+
+        public IEnumerable<Event> get(Expression<Func<Event, bool>> filter)
+        {
+            return context.Events.Where(filter).ToList();
+            
         }
     }
 }
