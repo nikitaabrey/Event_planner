@@ -3,21 +3,33 @@ using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 using System.Security.Claims;
+using Amazon.CognitoIdentityProvider;
+using Amazon.CognitoIdentityProvider.Model;
 
 namespace Event_planner.Services
 {
     public class Auth : IJwtAuth
+
     {
-        private readonly string username = "John";
+        private readonly int userid = 250;
         private readonly string password = "Password";
         private readonly string key;
         public Auth(string key)
         {
             this.key = key;
         }
-        public string Authentication(string username, string password)
+        public   string Authentication(string username, string password)
         {
-            if (!(username.Equals(username) || password.Equals(password)))
+
+
+            var user = new CognitoUser { 
+                UserName = username,
+                Password = password
+            };
+
+            bool result =  SignInUserAsync(user).GetAwaiter().GetResult();
+
+            if (!result)
             {
                 return null;
             }
@@ -45,6 +57,39 @@ namespace Event_planner.Services
 
             // 5. Return Token from method
             return tokenHandler.WriteToken(token);
+        }
+
+
+
+
+
+
+
+        public async Task<bool> SignInUserAsync(CognitoUser user)
+        {
+            var provider = new AmazonCognitoIdentityProviderClient(Amazon.RegionEndpoint.USEast1);
+
+            try
+            {
+                var authReq = new AdminInitiateAuthRequest
+                {
+                    AuthFlow = AuthFlowType.ADMIN_NO_SRP_AUTH,
+                    UserPoolId = "us-east-1_0o3L3xJcG",
+                    ClientId = "3kcatb2pis217osd3tsobh8ed2"
+                };
+                authReq.AuthParameters.Add("USERNAME", user.UserName);
+                authReq.AuthParameters.Add("PASSWORD", user.Password);
+
+                AdminInitiateAuthResponse authResp = await provider.AdminInitiateAuthAsync(authReq);
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+
+
         }
     }
 }

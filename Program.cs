@@ -97,4 +97,6 @@ void ConfigureServices(IServiceCollection services)
     {
         c.SwaggerDoc("v1", new OpenApiInfo { Title = "MemberJWTDemo", Version = "v1" });
     });
+
+    services.AddCognitoIdentity();
 }
