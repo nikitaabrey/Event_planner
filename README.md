@@ -39,10 +39,10 @@ App Features:
 <!-- ERD UPLOAD -->
 ### Entity Relational Diagram
 Add if we include a DB.
- <img src="constants/images/DB_ERD.jpg" alt="Logo" width="250" height="250">
+ <img src="constants/images/DB_ERD.jpg" alt="ERD" width="250" height="250">
  
  ###Authentication Diagram
-  <img src="constants/images/Auth.jpg" alt="Logo" width="250" height="250">
+  <img src="constants/images/Auth.jepg" alt="Auth_diagram" width="250" height="250">
 
 <!-- GETTING STARTED -->
 ## Getting Started
