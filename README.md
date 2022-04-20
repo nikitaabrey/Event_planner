@@ -28,9 +28,10 @@ App Features:
 ### Built With
 
 * [C#](https://docs.microsoft.com/en-us/dotnet/csharp/)
-* [Secrets Manager]()
-* [AWS Cognito]()
-* [oAuth 2.0]()
+* [MySQL](https://www.mysql.com/)
+* [Secrets Manager](https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-6.0&tabs=windows)
+* [AWS Cognito](https://aws.amazon.com/cognito/)
+* [oAuth 2.0](https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-auth-code-flow)
 
 ### Cloud Instance
 
@@ -40,8 +41,21 @@ App Features:
 ### Entity Relational Diagram
 Add if we include a DB.
  <img src="constants/images/DB_ERD.jpg" alt="ERD" width="250" height="250">
+
+ <!-- API ENDPOINTS-->
+ ### API Endpoints
+ -*/api/Caledar/day
+ -*/api/Caledar/month
+ -*/api/Caledar/week
+ -*/api/EventPlanner/{id}
+ -*/api/EventPlanner/UpdateEvent
+ -*/api/EventPlanner/CeateEvent
+ -*/api/Members/authentication
  
- <!-- Auth UPLOAD -->
+ 
+ <!-- AUTH DESCRIPTION -->
+##How the authentication works:
+*
  ###Authentication Diagram
   <img src="constants/images/Auth.jpg" alt="Auth_diagram" width="1000" height="400">
 
@@ -59,13 +73,27 @@ If you wish to test out the code and run the DB instance, please follow the inst
   _e.g. [AWS](https://bbd-internal-sso.awsapps.com/start#)_
 
 * Application To Run Endpoint
+  - Visual Studio or,
+  - Command line on Windows.
 
 
-### Running the scripts
+### Running the DB scripts
 
-1. Add steps...
+1. Create DB: run the file to create DB and its tables
+```sh
+TableCreation_Script.sql
+```
 
-### Run the Project
+2. Run bulk record data script
+```sh
+TablePopulate_Script.sql
+```
+
+### Running the API's
+
+####Running the scripts in Visual Code:
+1. Open the project in Visual Code and run the Program.cs file.
+2. 
 
 * Press Ctrl+F5.
 
