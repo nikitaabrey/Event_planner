@@ -59,7 +59,7 @@ App Features:
  
  <!-- AUTH DESCRIPTION -->
 ## How the authentication works:
-JSON web token (JWT) was used to authenticate the users personal information in this program. JWT allows transmitting of data between parties as a JSON object in a secure and compact way.
+JSON web token (JWT) was used to authenticate the users personal information in this program. JWT allows transmitting of data between parties as a JSON object in a secure and compact way. When a user wants to login to the web API they will provide a username and password which will be sent to an authorization server (AWS Cognito). If the username and password is correct a JWT token will be returned which the user can then send to the resource server (API backend), which will then provide the user with the resource they are looking for. However, if the username and password is incorrect the client will be unauthorised to view the resource they are wanting to review. 
 
  ### Authentication Diagram
   <img src="constants/images/Auth.jpg" alt="Auth_diagram" width="1000" height="300">
