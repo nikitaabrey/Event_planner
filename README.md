@@ -20,15 +20,15 @@ _“I need to remember to do this, let me put it in my calendar.”_
 ```
 App Features: 
 * Add events to calendar
-* Update events already in the caledar
+* Update events already in the calendar
 * Delete events that have been created
 * Secure login
-* Being able to view your day, week or month in advance
+* Being able to view your day or week in advance
 ```
 
 ### Built With
 
-* [C#](https://docs.microsoft.com/en-us/dotnet/csharp/)
+* [.Net Core](https://docs.microsoft.com/en-us/aspnet/core/?view=aspnetcore-6.0)
 * [MySQL](https://www.mysql.com/)
 * [Secrets Manager](https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-6.0&tabs=windows)
 * [AWS Cognito](https://aws.amazon.com/cognito/)
@@ -49,7 +49,10 @@ Add if we include a DB.
  */api/Caledar/day
  */api/Caledar/month
  */api/Caledar/week
- */api/EventPlanner/{id}
+ */api/EventPlanner/DeleteEvent/{id}
+ */api/EventPlanner/GetEvent/{id}
+ */api/EventPlanner/GetUserWeekEvents
+ */api/EventPlanner/GetEvenetsByDay/{id}/{date}
  */api/EventPlanner/UpdateEvent
  */api/EventPlanner/CeateEvent
  */api/Members/authentication
