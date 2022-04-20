@@ -56,10 +56,10 @@ Add if we include a DB.
  ```
  
  <!-- AUTH DESCRIPTION -->
-##How the authentication works:
-*
- ###Authentication Diagram
-  <img src="constants/images/Auth.jpg" alt="Auth_diagram" width="1000" height="400">
+## How the authentication works:
+
+ ### Authentication Diagram
+  <img src="constants/images/Auth.jpg" alt="Auth_diagram" width="800" height="400">
 
 <!-- GETTING STARTED -->
 ## Getting Started
