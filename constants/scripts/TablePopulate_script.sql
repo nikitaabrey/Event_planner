@@ -1,7 +1,7 @@
 USE EventPlannerDB;
 GO
 
-INSERT INTO Users (FirstName, LastName, Email)
+INSERT INTO Users (FirstName, LastName,UserName Email)
 VALUES
     ('Ahmed','Campbell','AhmedC','tristique.pellentesque.tellus@icloud.edu'),
     ('Constance','Bartlett','ConstanceB','purus.maecenas@outlook.edu'),
