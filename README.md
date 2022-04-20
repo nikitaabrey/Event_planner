@@ -59,7 +59,7 @@ Add if we include a DB.
 ## How the authentication works:
 
  ### Authentication Diagram
-  <img src="constants/images/Auth.jpg" alt="Auth_diagram" width="800" height="400">
+  <img src="constants/images/Auth.jpg" alt="Auth_diagram" width="1000" height="300">
 
 <!-- GETTING STARTED -->
 ## Getting Started
