@@ -20,11 +20,17 @@ _“I need to remember to do this, let me put it in my calendar.”_
 ```
 App Features: 
 * Add events to calendar
+* Update events already in the caledar
+* Delete events that have been created
+* Secure login
 ```
 
 ### Built With
 
 * [C#](https://docs.microsoft.com/en-us/dotnet/csharp/)
+* [Secrets Manager]()
+* [AWS Cognito]()
+* [oAuth 2.0]()
 
 ### Cloud Instance
 
@@ -33,6 +39,10 @@ App Features:
 <!-- ERD UPLOAD -->
 ### Entity Relational Diagram
 Add if we include a DB.
+ <img src="constants/images/DB_ERD.jpg" alt="Logo" width="250" height="250">
+ 
+ ###Authentication Diagram
+  <img src="constants/images/Auth.jpg" alt="Logo" width="250" height="250">
 
 <!-- GETTING STARTED -->
 ## Getting Started
