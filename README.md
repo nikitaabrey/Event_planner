@@ -57,6 +57,7 @@ Add if we include a DB.
  
  <!-- AUTH DESCRIPTION -->
 ## How the authentication works:
+JSON web token (JWT) was used to authenticate the users personal information in this program. JWT allows transmitting of data between parties as a JSON object in a secure and compact way.
 
  ### Authentication Diagram
   <img src="constants/images/Auth.jpg" alt="Auth_diagram" width="1000" height="300">
