@@ -3,13 +3,19 @@ using Event_planner.Repositories;
 using EventPlanner.Models;
 using EventPlanner.Domain.Models;
 
+using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Threading.Tasks;
+using EventPlanner.Domain.Validation;
+using EventPlanner.Domain.Mapping;
+
 namespace Event_planner.Services
 {
     public class EventPlannerService : IEventPlannerService
     {
         private IEventPlannerRepository EventPlannerRepo;
-        private readonly IMapper mapper;
 
+        private readonly IMapper mapper;
         public EventPlannerService(IEventPlannerRepository EventPlannerRepo, IMapper mapper){
             this.EventPlannerRepo = EventPlannerRepo;
             this.mapper = mapper;
@@ -26,16 +32,10 @@ namespace Event_planner.Services
 
         }
 
-        public Event FindEventById(int id)
-        {
-            var EventInstance = this.EventPlannerRepo.findEvent(id);
-            return EventInstance;
-        }
-
-        public DateTime getDate(string Date) 
-        {
-        return DateTime.Parse(Date);
-        }
+         public DateTime getDate(string Date) 
+         {
+            return DateTime.Parse(Date);
+         }
         
         public TimeSpan getTime(string Time) 
         {
