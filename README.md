@@ -41,8 +41,9 @@ App Features:
 Add if we include a DB.
  <img src="constants/images/DB_ERD.jpg" alt="ERD" width="250" height="250">
  
+ <!-- Auth UPLOAD -->
  ###Authentication Diagram
-  <img src="constants/images/Auth.jpg" alt="Auth_diagram" width="250" height="250">
+  <img src="constants/images/Auth.jpg" alt="Auth_diagram" width="600" height="400">
 
 <!-- GETTING STARTED -->
 ## Getting Started
