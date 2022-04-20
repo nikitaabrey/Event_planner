@@ -7,8 +7,11 @@ namespace Event_planner.Services
     {
         void DeleteEvent(int id);
 
+        Event FindEventById(int id);
+
         void UpdateEvent(EventDTO eventDTO);
         
         void CreateEvent(EventDTO Event);
     }
+
 }
