@@ -45,6 +45,7 @@ Add if we include a DB.
 
  <!-- API ENDPOINTS-->
  ### API Endpoints
+ ```
  */api/Caledar/day
  */api/Caledar/month
  */api/Caledar/week
@@ -52,7 +53,7 @@ Add if we include a DB.
  */api/EventPlanner/UpdateEvent
  */api/EventPlanner/CeateEvent
  */api/Members/authentication
- 
+ ```
  
  <!-- AUTH DESCRIPTION -->
 ##How the authentication works:
