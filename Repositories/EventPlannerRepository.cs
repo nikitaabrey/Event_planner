@@ -1,5 +1,7 @@
 using EventPlanner.Models;
 using Event_planner.Data;
+using System.Linq.Expressions;
+
 
 namespace Event_planner.Repositories
 {
@@ -17,10 +19,34 @@ namespace Event_planner.Repositories
             this.context.Remove(_event);
             this.context.SaveChanges();
         }
+        public void CreateEvent(Event _event)
+        {
+            this.context.Add(_event);
+            this.context.SaveChanges();
+        }
+
+        
+        public async Task UpdateEvent(Event _event)
+        {
+            this.context.Update(_event);
+            await this.context.SaveChangesAsync();
+          
+        }
 
         public Event findEvent(int id)
         {
             return this.context.Find<Event>(id);
+        }
+        
+        public IEnumerable<Event> findUserEvents(int UserId)
+        {
+            return this.context.Events.Where(e => e.UserId == UserId);
+        }
+
+        public IEnumerable<Event> get(Expression<Func<Event, bool>> filter)
+        {
+            return context.Events.Where(filter).ToList();
+            
         }
     }
 }

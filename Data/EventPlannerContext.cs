@@ -51,7 +51,6 @@ namespace Event_planner.Data
         private string getConnString() {
             if (configuration.GetSection("ConnectionString").Exists())
             {
-                Console.WriteLine("Hello WOrld");
                 return configuration.GetSection("ConnectionString").Value.ToString();
             }
             else if (configuration.GetSection("DatabaseSecretID").Exists()) {

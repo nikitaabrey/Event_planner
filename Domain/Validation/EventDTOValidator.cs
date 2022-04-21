@@ -27,7 +27,5 @@ namespace EventPlanner.Domain.Validation
 
         }
 
-
-
     }
 }

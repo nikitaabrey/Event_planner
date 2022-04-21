@@ -1,5 +1,4 @@
 ﻿using Event_planner.Data;
-using EventPlanner.Data.Queries;
 using EventPlanner.Models;
 using System.Linq.Expressions;
 
